@@ -1,21 +1,32 @@
 package com.example.EduMatrix.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import org.springframework.data.annotation.Id;
+
+import com.example.EduMatrix.enumclass.SubjectType;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
-public class ExamMark {
+public class ExamMark{
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
 
+    private SubjectType subjectType;
+
+    private LocalDate examDate;
+    private int marks;
+
+    private LocalTime examTime;
+
     @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    private String subject;
 
-    private double marks;
+
+
+
 }

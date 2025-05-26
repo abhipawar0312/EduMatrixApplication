@@ -1,21 +1,23 @@
 package com.example.EduMatrix.service;
 
 import com.example.EduMatrix.model.Student;
-import com.example.EduMatrix.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-public class StudentService {
-    @Autowired
-    private StudentRepository studentRepository;
+@Service
+public interface StudentService {
 
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
-    }
+    public List<Student> getAllStudents();
 
-    public Student getStudentById(Long id) {
-        return studentRepository.findById(id).orElse(null);
-    }
+    public Optional<Student> getStudentById(Long id);
+    public Student addStudent(Student student);
+    public Student updateStudent(Long id, Student student);
+    public void deleteStudent(Long id);
+
+
+
 
 }

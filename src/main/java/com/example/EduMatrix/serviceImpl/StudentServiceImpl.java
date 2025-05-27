@@ -1,30 +1,39 @@
 package com.example.EduMatrix.serviceImpl;
 
+import com.example.EduMatrix.dto.StudentRegistrationDTO;
+import com.example.EduMatrix.enumclass.UserRole;
 import com.example.EduMatrix.model.Student;
+import com.example.EduMatrix.model.User;
 import com.example.EduMatrix.repository.StudentRepository;
+import com.example.EduMatrix.repository.UserRepository;
 import com.example.EduMatrix.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServiceImpl implements StudentService {
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
     @Override
-    public Optional<Student> getStudentById(Long studentid) {
-        Optional<Student> student = studentRepository.findById(studentid);
-        return studentRepository.findById(studentid);
+    public Optional<Student> getStudentById(Long idStudent) {
+        Optional<Student> student = studentRepository.findById(idStudent);
+        return studentRepository.findById(idStudent);
     }
 
     @Override
@@ -64,13 +73,10 @@ public class ServiceImpl implements StudentService {
 
     }
 
-
-
-
-
-
-
-
+    @Override
+    public Student registerStudent(StudentRegistrationDTO dto) {
+        return null;
+    }
 
 
 }

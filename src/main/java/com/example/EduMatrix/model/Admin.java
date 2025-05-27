@@ -1,5 +1,6 @@
 package com.example.EduMatrix.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import lombok.Data;
@@ -14,32 +15,25 @@ public class Admin{
 
 
 
-    @Column(name = "firstname")
-    private String firstname;
+    @Column(nullable = false)
+    private String firstName;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(nullable = false)
+    private String lastName;
 
-    @Column(name = "email")
-    private String email;
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
 
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "address")
+    @Column(nullable = false)
     private String address;
 
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "confpassword")
-    private String confpassword;
-
-    private boolean enabled;
+    @Column(unique = true, nullable = false)
+    private String email;
 
 
     @OneToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
 

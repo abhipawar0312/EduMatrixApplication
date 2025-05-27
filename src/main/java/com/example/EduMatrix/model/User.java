@@ -1,42 +1,39 @@
 package com.example.EduMatrix.model;
 
-
-    // User.java (base for Student, Teacher, Admin, Reception
-
 import com.example.EduMatrix.enumclass.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
 @Entity
+@Data
 public class User {
+
         @Id
-        @GeneratedValue(strategy= GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(name = "username")
+        @Column(name = "username", unique = true, nullable = false)
         private String username;
 
-        @Column(name = "password")
+        @Column(name = "password", nullable = false)
         private String password;
 
-        @Column(name = "userrole")
         @Enumerated(EnumType.STRING)
-        private UserRole userrole;  // STUDENT, TEACHER, ADMIN, RECEPTION
+        @Column(name = "user_role", nullable = false)
+        private UserRole userrole;
 
-        @OneToOne(mappedBy = "user")
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
         private Student student;
 
-        @OneToOne(mappedBy = "user")
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
         private Teacher teacher;
 
-        @OneToOne(mappedBy = "user")
-        private  Admin admin;
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+        private Admin admin;
 
-        @OneToOne(mappedBy = "user")
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
         private Reception reception;
 
 
-    }
-
+}
 

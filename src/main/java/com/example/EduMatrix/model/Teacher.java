@@ -1,6 +1,6 @@
 package com.example.EduMatrix.model;
 
-import com.example.EduMatrix.enumclass.TeacherType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,33 +11,42 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTeacher;
 
+    @Column(nullable = false)
+    private String firstName;
 
-    @Column(name = "first_name")
-    private String firstname;
-    @Column(name = "last_name")
-    private String Lastname;
-    @Column(name = "email", unique = true)
-    private String email;
-    @Column
-    private String phone;
-    @Column
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
     private String address;
-    @Column
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(name = "subject", nullable = false)
     private String subject;
 
-    @Column
-    private String password;
-    @Column
-    private String confpassword;
-    @Column
-    private boolean enabled;
+    private String educationBoard;
+
+    private String experience;
+
+    private String qualification;
+
+    private String specialization;
+
+    private String availability;
+
 
     @OneToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
-
-
-
-
-
 }
+
+
+
+
+

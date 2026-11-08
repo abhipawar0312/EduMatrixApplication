@@ -23,7 +23,7 @@ public class SecurityConfig {
                             .requestMatchers("edu-matrix/api/users/register/**").permitAll()
                             .anyRequest().authenticated()
                     )
-                    .httpBasic(Customizer.withDefaults()); // Or use .formLogin(Customizer.withDefaults()) for form login
+                    .httpBasic(Customizer.withDefaults()); 
 
             return http.build();
         }

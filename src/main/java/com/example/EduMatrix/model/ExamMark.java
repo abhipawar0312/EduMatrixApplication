@@ -88,7 +88,7 @@ public class ExamMark{
         if (score != null) {
             this.marks = score.intValue();
         } else {
-            this.marks = 0; // Default value if score is null
+            this.marks = 0; 
         }
     }
 }
